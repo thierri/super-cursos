@@ -36,13 +36,25 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
       '@nuxtjs/axios',
-      '@nuxtjs/auth-next',
+      '@nuxtjs/auth',
   ],
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
+  axios: {
+      baseURL: "https://api.pistonapi.com/soper-blog/"
+  },
+
+  auth: {
+        strategies: {
+            local: {
+                endpoints: {
+                    login: { url: '/auth', method: 'post', propertyName: 'authenticationToken' },
+                    user: { url: '/users', method: 'get', propertyName: null }
+                },
+            }
+        }
+    },
 }

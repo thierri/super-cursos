@@ -26,10 +26,16 @@ export default {
       }
     }
   },
+    created() {
+        if (this.$auth.loggedIn) {
+            this.$router.push("dashboard");
+        }
+    },
   methods: {
     async userLogin() {
       try {
-        let response = await this.$auth.loginWith('local', { data: this.login })
+        let response = await this.$auth.loginWith('local', { data: this.login });
+        console.log('Sucesso!')
         console.log(response)
       } catch (err) {
         console.log(err)
