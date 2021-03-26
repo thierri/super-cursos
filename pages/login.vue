@@ -3,7 +3,7 @@
     <form @submit.prevent="userLogin" class=" bg-white border m-auto p-10 rounded shadow-lg space-y-6">
       <div>
         <label class="block mb-2">Username</label>
-        <input class="border p-2" type="text" v-model="login.username" />
+        <input class="border p-2 " type="text" v-model="login.username" />
       </div>
       <div >
         <label class="block mb-2">Password</label>
