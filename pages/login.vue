@@ -11,7 +11,7 @@
             </div>
             <hr />
             <div>
-                <label class="block mb-2 font-semibold text-gray-400"
+                <label class="block mb-2 font-semibold text-gray-600"
                     >Usuário</label
                 >
                 <input
@@ -21,7 +21,7 @@
                 />
             </div>
             <div>
-                <label class="block mb-2 font-semibold text-gray-400"
+                <label class="block mb-2 font-semibold text-gray-600"
                     >Senha</label
                 >
                 <input
@@ -30,14 +30,14 @@
                     v-model="login.password"
                 />
             </div>
-            <div>
-                <button
-                    class="p-2 w-full bg-yellow-600 text-white"
-                    type="submit"
-                >
-                    Entrar
-                </button>
+
+            <div class="bg-red-100 text-red-600 p-5" v-if="error">
+                Ops, algo errado. Tente novamente.
             </div>
+
+            <button class="p-2 w-full bg-yellow-600 text-white" type="submit">
+                Entrar
+            </button>
         </form>
     </div>
 </template>
@@ -50,6 +50,7 @@ export default {
                 username: "",
                 password: "",
             },
+            error: false
         };
     },
     created() {
@@ -59,6 +60,7 @@ export default {
     },
     methods: {
         async userLogin() {
+            this.error = false;
             try {
                 let response = await this.$auth.loginWith("local", {
                     data: this.login,
@@ -66,6 +68,7 @@ export default {
                 console.log("Sucesso!");
                 console.log(response);
             } catch (err) {
+                this.error = true;
                 console.log(err);
             }
         },
